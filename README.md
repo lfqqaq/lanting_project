@@ -1,5 +1,5 @@
 # mobile
-
+基于vue的移动端  基本配置（vue vant axios rem适配）
 ## Project setup
 ```
 yarn install
@@ -27,3 +27,5 @@ yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
