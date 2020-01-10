@@ -1,47 +1,70 @@
 <template>
-    <div>
-        <van-tabbar v-model="active">
-            <van-tabbar-item info="3">
-                <span>自定义</span>
-                <img
-                slot="icon"
-                slot-scope="props"
-                :src="props.active ? icon.active : icon.inactive"
-                >
-            </van-tabbar-item>
-            <van-tabbar-item icon="search">标签</van-tabbar-item>
-            <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-        </van-tabbar>
+    <div :style="{height:(screenHeight)+'px'}" id="maindiv">
+        <van-nav-bar
+            title="标题"
+            left-text="返回"
+            right-text="按钮"
+            left-arrow
+            />
+        <!-- <van-address-edit
+            :area-list="AreaList"
+            show-set-default
+            :detail-rows="3"
+            :search-result="searchResult"
+            :area-columns-placeholder="['请选择', '请选择', '请选择']"
+            @save="onSave"
+            @change-detail="onChangeDetail"
+        /> -->
+        <FiledFrom />
     </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import { Button, Tabbar, TabbarItem } from 'vant'
 import {test} from '@api/api'
-
-Vue.use(Button);
-Vue.use(Tabbar).use(TabbarItem);
+import AreaList from '@utils/city'
+import confirmOrder from '@components/confirm-order'
+import FiledFrom from '../components/Mine/public-extend'
 
     export default {
+        components: {
+            confirmOrder,
+            FiledFrom
+        },
         data() {
             return {
-                active: 0,
-                icon: {
-                    active: 'https://img.yzcdn.cn/vant/user-active.png',
-                    inactive: 'https://img.yzcdn.cn/vant/user-inactive.png'
-                }
+                AreaList,
+                searchResult: [],
+                screenHeight: document.documentElement.clientHeight,
             }
+        },
+        mounted() {
+            var _this = this
+            window.onresize = function () { // 定义窗口大小变更通知事件
+                _this.screenHeight = document.documentElement.clientHeight// 窗口高度
+            }
+        },
+        watch: {
+            // 监听屏幕高度变化
+            'screenHeight': function (val) {
+                var oIframe = document.getElementById('maindiv')
+                oIframe.style.height = (Number(val) - 40) + 'px'
+            }
+
         },
         created() {
         },
         methods: {
-            
+            onSave(e) {
+                console.log(e)
+            },
+            onChangeDetail() {
+
+            },
         },
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 
 
 </style>

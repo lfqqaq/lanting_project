@@ -4,12 +4,12 @@ const resolve = (dir) => path.join(__dirname, dir); // 将文件组成绝对路�
 module.exports = {
     chainWebpack: config => {
         //添加别名
-    config.resolve.alias
-    .set('@',resolve('src'))
-    .set('views',resolve('src/views'))
-    .set('@components',resolve('src/components'))
-    .set('@api',resolve('src/api'))
-    .set('@utils',resolve('src/utils'))
+        config.resolve.alias
+            .set('@', resolve('src'))
+            .set('views', resolve('src/views'))
+            .set('@components', resolve('src/components'))
+            .set('@api', resolve('src/api'))
+            .set('@utils', resolve('src/utils'))
     },
     devServer: {
         // overlay: { // 让浏览器 overlay 同时显示警告和错误
@@ -23,38 +23,29 @@ module.exports = {
         hotOnly: true, // 热更新
         proxy: {
             "/api": {
-            target:
-                "http://guojiang.ibrand.cc/", // 目标代理接口地址?
-            secure: false,
-            changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
-            ws: true, // 是否启用websockets
-            pathRewrite: {
-                "^/api": ""
-            }
+                target:
+                    "http://guojiang.ibrand.cc/", // 目标代理接口地址? http://classroom-h5.tcaizy.cn/
+                secure: false,
+                changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
+                ws: true, // 是否启用websockets
+                pathRewrite: {
+                    "^/api": ""
+                }
             }
         }
     },
     lintOnSave: true,
     css: {
         loaderOptions: {
-        postcss: {
+            postcss: {
                 plugins: [
-                require('postcss-pxtorem')({
-                    rootValue : 16, // 换算的基数
-                    selectorBlackList  : [], // 忽略转换正则匹配项
-                    propList   : ['*'],
-                }),
+                    require('postcss-pxtorem')({
+                        rootValue: 16, // 换算的基数
+                        selectorBlackList: [], // 忽略转换正则匹配项
+                        propList: ['*'],
+                    }),
                 ]
             }
-        }
-    },
-    pwa: {
-        iconPaths: {
-            favicon32: 'img/xr.png',
-            favicon16: 'img/xr.png',
-            appleTouchIcon: 'img/xr.png',
-            maskIcon: 'img/xr.png',
-            msTileImage: 'img/xr.png'
         }
     }
 }

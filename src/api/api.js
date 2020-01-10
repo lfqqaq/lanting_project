@@ -1,41 +1,28 @@
 import { service } from '@utils/request'
 
-const api = { 
-  consutAdd: 'WisdomEra/insterConsut',
-  bannerList: 'WisdomEra/allPicture',
+const api = {
+  auth: 'auth/login',
   test: 'sms/verify-code'
 }
 
 /*
-  图片列表获取
+  登录获取
 */
-export function bannerList(params) {
+export function getWxAuth(data) {
   return service({
-    url: api.bannerList,
-    method: 'get',
-    params: params
-  })
-}
-/*
-  提交需求
-*/
-export function consutAdd(params) {
-  return service({
-    url: api.consutAdd,
+    url: api.auth,
     method: 'post',
-    params: params
-  })
+    data: data
+  });
 }
 
 /*
   提交需求
 */
-export function test(params) {
+export function getUserInfo(params) {
   return service({
     url: api.test,
     method: 'post',
     data: params
   })
 }
-
-
